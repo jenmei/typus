@@ -65,15 +65,6 @@ module Typus
         end
       end
 
-      #--
-      # This method checks if the user can perform the requested action.
-      # It works on a resource: git, memcached, syslog ...
-      #++
-      def check_if_user_can_perform_action_on_resource
-        resource = params[:controller].remove_prefix.camelize
-        not_allowed if admin_user.cannot?(params[:action], resource, { :special => true })
-      end
-
       def not_allowed
         render :text => "Not allowed!", :status => :unprocessable_entity
       end
