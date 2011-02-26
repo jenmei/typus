@@ -12,7 +12,7 @@ require "typus/regex"
 require "typus/version"
 
 require "render_inheritable"
-require "will_paginate"
+require "kaminari"
 
 autoload :FakeUser, "support/fake_user"
 

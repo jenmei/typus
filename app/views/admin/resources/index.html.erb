@@ -27,9 +27,9 @@
   </div>
 <% end %>
 
-<% if @items.any? -%>
-  <%= build_list(@resource, fields, @items) %>
-  <%= will_paginate(@items, Typus.pagination) %>
+<% if @items.all.any? -%>
+  <%= raw build_list(@resource, fields, @items) %>
+  <%= paginate(@items) %>
 <% else %>
   <p><%= Typus::I18n.t("No %{resources} found.", :resources => @resource.model_name.human.downcase.pluralize) %></p>
 <% end %>

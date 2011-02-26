@@ -13,7 +13,7 @@ module Typus
 
       def generate_html
         items_per_page = @resource.typus_options_for(:per_page)
-        @items = @resource.paginate(:per_page => items_per_page, :page => params[:page])
+        @items = @resource.page(params[:page]).per(items_per_page)
       end
 
       #--

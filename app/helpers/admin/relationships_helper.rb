@@ -73,7 +73,7 @@ module Admin
     def build_pagination
       items_per_page = @model_to_relate.typus_options_for(:per_page)
       data = @item.send(@field).order(@model_to_relate.typus_order_by).where(set_conditions)
-      @items = data.paginate(:per_page => items_per_page, :page => params[:page])
+      @items = data.page(params[:page]).per(items_per_page)
     end
 
     def build_relate_form(template = "admin/templates/relate_form")
