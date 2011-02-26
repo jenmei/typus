@@ -50,11 +50,11 @@ module Typus
         send_file filename
       end
 
-      def export(format)
+      def export(format, data = @resource)
         fields = @resource.typus_fields_for(format).map { |i| i.first }
         methods = fields - @resource.column_names
         except = @resource.column_names - fields
-        render format.to_sym => @resource.send("to_#{format}", :methods => methods, :except => except)
+        render format.to_sym => data, :methods => methods, :except => except
       end
 
     end
