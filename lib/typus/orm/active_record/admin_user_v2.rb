@@ -41,6 +41,20 @@ module Typus
             self.password_digest = BCrypt::Password.create(unencrypted_password)
           end
 
+          def to_label
+            full_name = [first_name, last_name].delete_if { |s| s.blank? }
+            full_name.any? ? full_name.join(" ") : email
+          end
+
+          def locale
+            (preferences && preferences[:locale]) ? preferences[:locale] : ::I18n.default_locale
+          end
+
+          def locale=(locale)
+            self.preferences ||= {}
+            self.preferences[:locale] = locale
+          end
+
         end
 
       end

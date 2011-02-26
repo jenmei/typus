@@ -44,13 +44,12 @@ module Typus
             !is_root?
           end
 
-          def locale
-            (preferences && preferences[:locale]) ? preferences[:locale] : ::I18n.default_locale
+          def role
+            Typus.master_role
           end
 
-          def locale=(locale)
-            self.preferences ||= {}
-            self.preferences[:locale] = locale
+          def locale
+            ::I18n.locale
           end
 
         end

@@ -22,11 +22,14 @@ RailsApp::Application.configure do
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
+
+  # config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 end
 
 # Be sure to restart your server when you modify this file.
 
 Typus.setup do |config|
   config.config_folder = Rails.root.join("config/typus")
-  config.authentication = :session
+  config.authentication = :devise
+  config.user_class_name = "DeviseUser"
 end

@@ -1,0 +1,8 @@
+DeviseUser:
+  fields:
+    default: email
+    form: email, password, password_confirmation
+  order_by: email
+  filters: created_at
+  search: email
+  application: Devise

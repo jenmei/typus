@@ -41,8 +41,8 @@ module Typus
               new :email => options[:email], :password => options[:password], :role => options[:role]
             end
 
-            include InstanceMethods
             include Typus::Orm::ActiveRecord::User::InstanceMethods
+            include InstanceMethods
 
           end
 
@@ -52,6 +52,20 @@ module Typus
 
           def authenticated?(password)
             crypted_password == encrypt(password)
+          end
+
+          def to_label
+            full_name = [first_name, last_name].delete_if { |s| s.blank? }
+            full_name.any? ? full_name.join(" ") : email
+          end
+
+          def locale
+            (preferences && preferences[:locale]) ? preferences[:locale] : ::I18n.default_locale
+          end
+
+          def locale=(locale)
+            self.preferences ||= {}
+            self.preferences[:locale] = locale
           end
 
           protected

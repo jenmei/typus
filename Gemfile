@@ -14,6 +14,8 @@ gem 'paperclip'
 gem 'rack-cache', :require => 'rack/cache'
 gem 'rails', '~> 3.0'
 
+gem 'devise'
+
 group :test do
   gem 'shoulda-context'
   gem 'mocha' # Make sure mocha is loaded at the end ...

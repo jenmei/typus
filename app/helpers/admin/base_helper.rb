@@ -19,7 +19,12 @@ module Admin
 
     def login_info
       unless admin_user.is_a?(FakeUser)
-        render "admin/helpers/base/login_info"
+        logout_url = if Typus.authentication == :devise
+                       send("destroy_#{Typus.user_class_name.underscore}_session_path")
+                     else
+                       admin_session_path
+                     end
+        render "admin/helpers/base/login_info", :logout_url => logout_url
       end
     end
 
