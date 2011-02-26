@@ -74,13 +74,10 @@ class Admin::ResourcesController < Admin::BaseController
   def show
     check_resource_ownership if @resource.typus_options_for(:only_user_items)
 
-=begin
-    # FIXME
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render :json => @item }
+      @resource.typus_export_formats.each { |f| format.send(f) { send("export", f, @item) } }
     end
-=end
   end
 
   def update
