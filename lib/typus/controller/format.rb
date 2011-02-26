@@ -50,19 +50,11 @@ module Typus
         send_file filename
       end
 
-      def generate_json
-        export(:json)
-      end
-
-      def generate_xml
-        export(:xml)
-      end
-
       def export(format)
         fields = @resource.typus_fields_for(format).map { |i| i.first }
         methods = fields - @resource.column_names
         except = @resource.column_names - fields
-        render format => @resource.send("to_#{format}", :methods => methods, :except => except)
+        render format.to_sym => @resource.send("to_#{format}", :methods => methods, :except => except)
       end
 
     end

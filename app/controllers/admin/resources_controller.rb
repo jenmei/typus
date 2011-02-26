@@ -30,7 +30,7 @@ class Admin::ResourcesController < Admin::BaseController
         add_resource_action("Trash", {:action => "destroy"}, {:confirm => "#{Typus::I18n.t("Trash")}?", :method => 'delete'})
         generate_html
       end
-      @resource.typus_export_formats.each { |f| format.send(f) { send("generate_#{f}") } }
+      @resource.typus_export_formats.each { |f| format.send(f) { send("export", f) } }
     end
   end
 
